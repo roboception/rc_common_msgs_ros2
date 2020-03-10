@@ -40,12 +40,13 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   ADD_LINTER_TESTS
 )
 
-ament_export_dependencies(rosidl_default_runtime)
+ament_export_dependencies(rosidl_default_runtime std_msgs)
 
 ament_package()
 
 ######################################
 ## Define information for packaging ##
 ######################################
-set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS OFF)
+# optionally specify dependencies of the debian package here (comma separated!)
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "ros-$ENV{ROS_DISTRO}-std-msgs")
 include(cmake/package_debian.cmake)
