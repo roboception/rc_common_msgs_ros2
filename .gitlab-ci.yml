@@ -1,5 +1,6 @@
 before_script:
   - export DISTRO_CODENAME=`lsb_release -cs` && echo Using distro $DISTRO_CODENAME
+  - echo Using ROS_DISTRO $ROS_DISTRO
   - export DEBIAN_FRONTEND=noninteractive
   - apt-get update -yq
   - apt-get install -y lintian
@@ -12,16 +13,22 @@ variables:
 #########################
 # Templates using anchors
 #########################
-.amd64_bionic_t: &amd64_bionic_job
+.amd64_dashing_t: &amd64_dashing_job
   image: ros:dashing-ros-base-bionic
   tags:
     - amd64
     - docker
 
-.armhf_bionic_t: &armhf_bionic_job
+.armhf_dashing_t: &armhf_dashing_job
   image: ros:dashing-ros-base-bionic
   tags:
     - armhf
+    - docker
+
+.amd64_eloquent_t: &amd64_eloquent_job
+  image: ros:eloquent-ros-base-bionic
+  tags:
+    - amd64
     - docker
 
 #############
@@ -71,30 +78,42 @@ variables:
 
 # Test (on every commit)
 ########################
-test:bionic:amd64:
-  <<: *amd64_bionic_job
+test:dashing:amd64:
+  <<: *amd64_dashing_job
   extends: .test
 
-test:bionic:armhf:
-  <<: *armhf_bionic_job
+test:dashing:armhf:
+  <<: *armhf_dashing_job
+  extends: .test
+
+test:eloquent:amd64:
+  <<: *amd64_eloquent_job
   extends: .test
 
 # Deploy testing (only on master)
 #################################
-package_testing:bionic:amd64:
-  <<: *amd64_bionic_job
+package_testing:dashing:amd64:
+  <<: *amd64_dashing_job
   extends: .package_testing
 
-package_testing:bionic:armhf:
-  <<: *armhf_bionic_job
+package_testing:dashing:armhf:
+  <<: *armhf_dashing_job
+  extends: .package_testing
+
+package_testing:eloquent:amd64:
+  <<: *amd64_eloquent_job
   extends: .package_testing
 
 # Deploy stable (only for releases, version tags)
 #################################################
-package_stable:bionic:amd64:
-  <<: *amd64_bionic_job
+package_stable:dashing:amd64:
+  <<: *amd64_dashing_job
   extends: .package_stable
 
-package_stable:bionic:armhf:
-  <<: *armhf_bionic_job
+package_stable:dashing:armhf:
+  <<: *armhf_dashing_job
+  extends: .package_stable
+
+package_stable:eloquent:amd64:
+  <<: *amd64_eloquent_job
   extends: .package_stable
