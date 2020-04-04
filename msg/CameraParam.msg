@@ -12,10 +12,6 @@ float32 exposure_time
 # Gain factor in dB
 float32 gain
 
-# Standard deviation of the expected noise in pixel intensity
-# at full image resolution
-float32 noise
-
 # Line status for DigitalIO control according to GenICam SFNC:
 # Current status of all available line signals in a single bitfield
 uint32 line_status_all
@@ -31,3 +27,6 @@ uint32 line_status_all
 # ]
 #
 KeyValue[] line_source
+
+# Additional optional camera parameters as key value pairs
+KeyValue[] extra_data
