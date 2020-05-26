@@ -9,6 +9,7 @@ before_script:
 
 variables:
   GET_SOURCES_ATTEMPTS: "3"
+  GIT_DEPTH: "0"
 
 #########################
 # Templates using anchors

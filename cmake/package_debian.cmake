@@ -4,10 +4,10 @@ set(CPACK_PACKAGE_VENDOR "Roboception GmbH, Munich, Germany")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Roboception ${PROJECT_NAME} package")
 
 # CPACK_PACKAGE_VERSION
-if (PACKAGE_VERSION)
-    set(CPACK_PACKAGE_VERSION ${PACKAGE_VERSION})
+if (RC_PACKAGE_VERSION)
+    set(CPACK_PACKAGE_VERSION ${RC_PACKAGE_VERSION})
 else ()
-    message(WARNING "PACKAGE_VERSION not set! Did you include project_version.cmake?")
+    message(WARNING "RC_PACKAGE_VERSION not set! Did you include project_version.cmake?")
     if (RC_PROJECT_VERSION)
         message(WARNING "CPACK_PACKAGE_VERSION: Falling back to RC_PROJECT_VERSION (${RC_PROJECT_VERSION})")
         set(CPACK_PACKAGE_VERSION ${RC_PROJECT_VERSION})
