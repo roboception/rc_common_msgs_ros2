@@ -1,3 +1,8 @@
+0.5.0 (2020-05-26)
+------------------
+
+* Added array key/value list for extra data to CameraParam message and removed 'noise' field (will be provided in extra_data)
+
 0.4.1 (2020-03-10)
 ------------------
 
