@@ -1,9 +1,8 @@
 before_script:
+  - export DEBIAN_FRONTEND=noninteractive
+  - apt-get update -yq && apt-get install -y curl lsb-release lintian
   - export DISTRO_CODENAME=`lsb_release -cs` && echo Using distro $DISTRO_CODENAME
   - echo Using ROS_DISTRO $ROS_DISTRO
-  - export DEBIAN_FRONTEND=noninteractive
-  - apt-get update -yq
-  - apt-get install -y lintian
   - rosdep install --from-paths . --ignore-src -r -y
   - export CMAKE_PREFIX_PATH="/opt/ros/$ROS_DISTRO"
 
