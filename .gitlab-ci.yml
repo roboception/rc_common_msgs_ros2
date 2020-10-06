@@ -31,6 +31,12 @@ variables:
     - amd64
     - docker
 
+.amd64_foxy_t: &amd64_foxy_job
+  image: ros:foxy-ros-base-focal
+  tags:
+    - amd64
+    - docker
+
 #############
 # Templates
 #############
@@ -90,6 +96,10 @@ test:eloquent:amd64:
   <<: *amd64_eloquent_job
   extends: .test
 
+test:foxy:amd64:
+  <<: *amd64_foxy_job
+  extends: .test
+
 # Deploy testing (only on master)
 #################################
 package_testing:dashing:amd64:
@@ -104,6 +114,10 @@ package_testing:eloquent:amd64:
   <<: *amd64_eloquent_job
   extends: .package_testing
 
+package_testing:foxy:amd64:
+  <<: *amd64_foxy_job
+  extends: .package_testing
+
 # Deploy stable (only for releases, version tags)
 #################################################
 package_stable:dashing:amd64:
@@ -116,4 +130,8 @@ package_stable:dashing:armhf:
 
 package_stable:eloquent:amd64:
   <<: *amd64_eloquent_job
+  extends: .package_stable
+
+package_stable:foxy:amd64:
+  <<: *amd64_foxy_job
   extends: .package_stable
