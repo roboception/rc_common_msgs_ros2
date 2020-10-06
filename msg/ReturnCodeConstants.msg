@@ -15,6 +15,7 @@ int16 INVALID_LICENSE=-9    # No valid license to fulfill this request
 int16 CAPACITY_EXCEEDED=-10 # capacity exceeded, i.e. new element could not be added
 
 # Reserved non-error codes (reserved range [1,99])
+int16 TIMEOUT_REACHED=3     # timeout in internal computation is reached, but a partial result could still be provided
 int16 CAPACITY_REACHED=10   # max capacity is reached, i.e. list is now full
 int16 OVERWRITTEN=11        # existing data/element overwritten
 int16 HINTS=999             # performance/implementation hints for application developers
